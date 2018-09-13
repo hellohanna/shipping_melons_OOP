@@ -32,6 +32,17 @@ class AbstractMelonOrder():
         self.shipped = True       
 
 
+class GovernmentMelonOrder(AbstractMelonOrder):
+    """A melon order by the US Government"""
+    tax = 0
+    passed_inspection = False
+    order_type = "domestic"
+
+    def mark_inspection(self, passed):
+
+        self.passed_inspection = passed        
+
+
 class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
     order_type = "domestic"
