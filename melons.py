@@ -12,6 +12,9 @@ class AbstractMelonOrder():
         self.country_code = country_code
         self.shipped = False
 
+        if self.qty > 100:
+            raise(TooManyMelonsError)
+
     def get_total(self):
         """Calculate price, including tax."""
         fee = 0
@@ -81,3 +84,10 @@ class InternationalMelonOrder(AbstractMelonOrder):
         """Return the country code."""
 
         return self.country_code
+
+class TooManyMelonsError(ValueError):
+    """Exception raised for too many melons"""
+
+    def __init__(self):
+        self.expression = "TooManyMelonsError"
+        self.message = "No more than 100 melons!"
